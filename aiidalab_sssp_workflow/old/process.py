@@ -4,9 +4,9 @@ import ipywidgets as ipw
 from IPython.display import clear_output, display
 from aiida.orm import ProcessNode, WorkChainNode
 from aiida.cmdline.utils.ascii_vis import format_call_graph
-from widgets import ProcessOutputFollower
 
-from viewers import viewer
+from aiidalab_sssp_workflow.old.widgets import ProcessOutputFollower
+from aiidalab_sssp_workflow.old.viewers import viewer
 
 
 class ProgressBarWidget(ipw.VBox):
