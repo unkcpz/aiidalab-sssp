@@ -129,7 +129,7 @@ class ProcessInputsWidget(ipw.VBox):
                 display(viewer(selected_input))
 
     def update(self, process):
-        inputs_list = [(l.title(), l) for l in process.outputs] if process else []
+        inputs_list = [(_.title(), _) for _ in process.outputs] if process else []
         self.inputs.options = [("Select input", "")] + inputs_list
 
     @traitlets.observe("process")
@@ -172,7 +172,7 @@ class ProcessOutputsWidget(ipw.VBox):
                 display(viewer(selected_output))
 
     def update(self, process):
-        outputs_list = [(l.title(), l) for l in process.outputs] if process else []
+        outputs_list = [(_.title(), _) for _ in process.outputs] if process else []
         self.outputs.options = [("Select output", "")] + outputs_list
 
     @traitlets.observe("process")

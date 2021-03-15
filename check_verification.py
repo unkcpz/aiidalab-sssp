@@ -139,7 +139,9 @@ class ConvergenceResultViewer(ipw.VBox):
     ):
         from bokeh.io import show, output_notebook
         from bokeh.plotting import figure
-        from bokeh.models import BoxAnnotation, FixedTicker
+        from bokeh.models import FixedTicker
+
+        # from bokeh.models import BoxAnnotation
 
         output_notebook(hide_banner=True)
         out = ipw.Output()
