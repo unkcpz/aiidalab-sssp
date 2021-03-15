@@ -4,5 +4,15 @@
     "version": "0.2.0",
     "authors": "The AiiDA lab Team",
     "logo": "img/logo.png",
-    "state": "development"
+    "state": "development",
+    "requires": {
+        ">=0.2": [
+            "aiida-core~=1.5",
+            "aiida-pseudo~=0.4",
+            "aiida-quantumespresso~=3.2",
+            "aiida-sssp-workflow~=0.1.0",
+            "aiidalab-widgets-base~=1.0b",
+            "ipywidgets~=7.6"
+        ]
+    }
 }
