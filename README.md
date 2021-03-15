@@ -20,5 +20,7 @@ Here may go a few sreenshots / animated gifs illustrating how to use the app.
 
 General: `aiidalab[at]materialscloud.org`
 
-**Main author**: Jason Yeu, `morty.yeu[at]gmail.com`
-Supporting author: Casper Welzel Andersen, `casper.andersen[at]epfl.ch`
+Authors:
+
+- **Jason Yeu, `morty.yeu[at]gmail.com`**
+- Casper Welzel Andersen, `casper.andersen[at]epfl.ch`
