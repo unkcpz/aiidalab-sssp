@@ -69,9 +69,9 @@ class XyDataViewer(ipw.VBox):
                           line_width=self._LINE_WIDTH,
                           line_color=self._LINE_COLOR)  # pylint: disable=too-many-function-args
                 plot.square(x_data,
-                           y_data,
-                           fill_color=self._RES_COLOR,
-                           size=self._CIRCLE_SIZE)
+                            y_data,
+                            fill_color=self._RES_COLOR,
+                            size=self._CIRCLE_SIZE)
                 figure_list.append(plot)
 
             show(column(*figure_list))

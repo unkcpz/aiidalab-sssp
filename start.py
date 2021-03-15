@@ -5,7 +5,7 @@ import ipywidgets as ipw
 template = """
 <table>
 <tr>
-  <th style="text-align:center">Application sssp workflow</th>
+  <th style="text-align:center">SSSP Workflows</th>
 <tr>
   <td valign="top"><ul>
     <li><a href="{appbase}/sssp-delta-factor.ipynb" target="_blank">delta-factor workflow</a></li>

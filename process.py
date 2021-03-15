@@ -124,7 +124,7 @@ class ProcessInputsWidget(ipw.VBox):
 
     def update(self, process):
         inputs_list = [(l.title(), l)
-                        for l in process.outputs] if process else []
+                       for l in process.outputs] if process else []
         self.inputs.options = [('Select input', '')] + inputs_list
 
     @traitlets.observe('process')

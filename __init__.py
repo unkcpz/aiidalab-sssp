@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Application sssp workflow
+SSSP Workflows
 aiidalab-sssp-workflow
 
-The aiidalab plugin to running sssp workflow
+Run SSSP workflows fast and easy.
 """

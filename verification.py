@@ -37,7 +37,6 @@ class ComputeVerificationWidget(ipw.VBox):
             'remote_abs_path': '/usr/bin/ph.x',
         }
 
-
         pw_code = CodeDropdown(input_plugin='quantumespresso.pw',
                                description="Pw code",
                                setup_code_params=setup_pw_code_params)
@@ -66,18 +65,16 @@ protocol.yml
             }
         }
 
-        self.protocol = ipw.Dropdown(
-            options=['efficiency', 'precision'],
-            value='efficiency',
-            description='Protocol:',
-            disabled=False,
-            **extra)
-        self.dual= ipw.BoundedIntText(
-            value=8,
-            step=1,
-            min=1,
-            description="# dual",
-            **extra)
+        self.protocol = ipw.Dropdown(options=['efficiency', 'precision'],
+                                     value='efficiency',
+                                     description='Protocol:',
+                                     disabled=False,
+                                     **extra)
+        self.dual = ipw.BoundedIntText(value=8,
+                                       step=1,
+                                       min=1,
+                                       description="# dual",
+                                       **extra)
 
         # set the parameters for delta factor calculation
         self.parameters = ipw.HBox(children=[
@@ -162,26 +159,21 @@ protocol.yml
             value='Unknown',
             placeholder='The element of the pseudo',
             description='Element:',
-            disabled=False
-        )
-        self.query_pp_type = ipw.Text(
-            value='Unknown',
-            placeholder='The type of the pseudo',
-            description='PP type:',
-            disabled=False
-        )
+            disabled=False)
+        self.query_pp_type = ipw.Text(value='Unknown',
+                                      placeholder='The type of the pseudo',
+                                      description='PP type:',
+                                      disabled=False)
         self.query_pp_family = ipw.Text(
             value='UnKnown',
             placeholder='The family name of the pseudo',
             description='Family name:',
-            disabled=False
-        )
+            disabled=False)
         self.query_pp_version = ipw.Text(
             value='UnKnown',
             placeholder='The version number of the pseudo',
             description='Version:',
-            disabled=False
-        )
+            disabled=False)
 
         store_info_help = ipw.HTML(
             """<div style="line-height:120%; padding-top:25px;">
@@ -190,8 +182,7 @@ protocol.yml
             <li>Increase the number of nodes if you run out of memory for larger structures.</li>
             <li>Increase the number of nodes and cores if you want to reduce the total runtime.</li>
             </ul>
-            </div>"""
-        )
+            </div>""")
         self.store_setting = ipw.HBox(children=[
             ipw.VBox(
                 children=[
@@ -235,7 +226,10 @@ protocol.yml
             children=[self.submit_button, self.skip_button])
 
         self.config_tabs = ipw.Tab(
-            children=[self.code_group, self.parameters, self.resources, self.store_setting],
+            children=[
+                self.code_group, self.parameters, self.resources,
+                self.store_setting
+            ],
             layout=ipw.Layout(height='240px'),
         )
         self.config_tabs.set_title(0, 'Code')
@@ -286,8 +280,10 @@ protocol.yml
 
             builder.protocol = orm.Str(self.protocol.value)
 
-            ecutwfc = np.array(
-                [30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 90, 100, 120, 150, 200])
+            ecutwfc = np.array([
+                30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 90, 100, 120, 150,
+                200
+            ])
             ecutrho = ecutwfc * self.dual.value
             builder.parameters.ecutwfc_list = orm.List(list=list(ecutwfc))
             builder.parameters.ecutrho_list = orm.List(list=list(ecutrho))
@@ -322,10 +318,14 @@ protocol.yml
 
 
 REGEX_ELEMENT_V1 = re.compile(r"""(?P<element>[a-zA-Z]{1,2})\s+Element""")
-REGEX_ELEMENT_V2 = re.compile(r"""\s*element\s*=\s*['"]\s*(?P<element>[a-zA-Z]{1,2})\s*['"].*""")
+REGEX_ELEMENT_V2 = re.compile(
+    r"""\s*element\s*=\s*['"]\s*(?P<element>[a-zA-Z]{1,2})\s*['"].*""")
 
-REGEX_PP_TYPE_V1 = re.compile(r"""(?P<pp_type>[a-zA-Z]{1,2})\s+Ultrasoft pseudopotential""")
-REGEX_PP_TYPE_V2 = re.compile(r"""\s*pseudo_type\s*=\s*['"]\s*(?P<pp_type>[a-zA-Z]{1,2})\s*['"].*""")
+REGEX_PP_TYPE_V1 = re.compile(
+    r"""(?P<pp_type>[a-zA-Z]{1,2})\s+Ultrasoft pseudopotential""")
+REGEX_PP_TYPE_V2 = re.compile(
+    r"""\s*pseudo_type\s*=\s*['"]\s*(?P<pp_type>[a-zA-Z]{1,2})\s*['"].*""")
+
 
 def parse_element(content: str):
     """Parse the content of the UPF file to determine the element.
@@ -339,7 +339,9 @@ def parse_element(content: str):
         if match:
             return match.group('element')
 
-    raise ValueError(f'could not parse the element from the UPF content: {content}')
+    raise ValueError(
+        f'could not parse the element from the UPF content: {content}')
+
 
 def parse_pp_type(content: str):
     """Parse the content of the UPF file to determine the element.
@@ -353,4 +355,5 @@ def parse_pp_type(content: str):
         if match:
             return match.group('pp_type')
 
-    raise ValueError(f'could not parse the pp_type from the UPF content: {content}')
+    raise ValueError(
+        f'could not parse the pp_type from the UPF content: {content}')

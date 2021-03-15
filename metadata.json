@@ -1,7 +1,7 @@
 {
-    "title": "Application sssp workflow",
-    "description": "The aiidalab plugin to running sssp workflow",
-    "version": "0.1-alpha",
+    "title": "SSSP Workflows",
+    "description": "Run SSSP workflows fast and easy.",
+    "version": "0.2.0",
     "authors": "The AiiDA lab Team",
     "logo": "img/logo.png",
     "state": "development"
