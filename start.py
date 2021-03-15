@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
-
 import ipywidgets as ipw
 
 template = """
-<h3 style="text-align:center">SSSP Workflows</h3>
-
 <table>
   <tr>
-    <th>New Apps</th>
-    <th>Original Apps</th>
+    <th style="text-align:center">New Apps</th>
+    <th style="width:70px" rowspan=2></th>
+    <th style="text-align:center">Original Apps</th>
   <tr>
     <td valign="top">
       <ul>
