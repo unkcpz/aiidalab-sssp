@@ -3,32 +3,29 @@ import os
 
 import ipywidgets as ipw
 import traitlets
-from aiida.plugins import DataFactory
-
-UpfData = DataFactory("upf")
+from aiida.orm.nodes.data.upf import UpfData
 
 
 class PseudoUploadWidget(ipw.VBox):
     """Class that allows to upload pseudopotential from user's computer."""
 
     pseudo_node = traitlets.Instance(UpfData, allow_none=True)
-    pseudo_filename = traitlets.Unicode(allow_none=False)
 
-    def __init__(self, title="", description="Upload Pseudopotential"):
+    def __init__(
+        self, title: str = "", description: str = "Upload Pseudopotential"
+    ) -> None:
         self.title = title
         self.file_upload = ipw.FileUpload(
             description=description, multiple=False, layout={"width": "initial"}
         )
         supported_formats = ipw.HTML(
-            """<a href="http://www.quantum-espresso.org/pseudopotentials/
-unified-pseudopotential-format" target="_blank">
-Supported pseudo formats (Now only support UPF type)
-</a>"""
+            '<a href="http://www.quantum-espresso.org/pseudopotentials/'
+            'unified-pseudopotential-format" target="_blank">Supported pseudo formats</a>'
         )
         self.file_upload.observe(self._on_file_upload, names="value")
-        super().__init__(children=[self.file_upload, supported_formats])
+        super().__init__(children=(self.file_upload, supported_formats))
 
-    def _on_file_upload(self, change=None):
+    def _on_file_upload(self, change: dict = None) -> None:
         """When file upload button is pressed."""
         fname, item = next(iter(change["new"].items()))
         frmt = fname.split(".")[-1]
@@ -44,9 +41,7 @@ Supported pseudo formats (Now only support UPF type)
 
 
 class PseudoSelectionWidget(ipw.VBox):
-    """
-    Upload a pesudopotential and store it as UpfData in database
-    """
+    """Upload a pesudopotential and store it as UpfData in database."""
 
     pseudo = traitlets.Instance(UpfData, allow_none=True)
     pseudo_filename = traitlets.Unicode(allow_none=False)
@@ -54,6 +49,7 @@ class PseudoSelectionWidget(ipw.VBox):
 
     def __init__(self, description=None, **kwargs):
         self.pseudo_upload_widget = PseudoUploadWidget()
+
         if description is None:
             description = ipw.Label(
                 "Select a pseudopotential from one of the following sources and then "
@@ -95,18 +91,19 @@ class PseudoSelectionWidget(ipw.VBox):
             **kwargs,
         )
 
-    def confirm(self, _=None):
+    def confirm(self, _=None) -> None:
+        """Confirm chosen pseudopotential"""
         self.confirmed_pseudo = self.pseudo
         self.confirm_button.disabled = True
 
     @traitlets.observe("pseudo_filename")
-    def _observe_pseudo_filename(self, change):
+    def _observe_pseudo_filename(self, change: dict) -> None:
         pseudo_filename = change["new"]
         with self.hold_trait_notifications():
             self.pseudo_name_text.value = pseudo_filename.split(".")[0]
 
     @traitlets.observe("pseudo")
-    def _observe_pseudo(self, change):
+    def _observe_pseudo(self, change: dict) -> None:
         # the first time set the pseudo
         if self.pseudo:
             self.confirm_button.disabled = False

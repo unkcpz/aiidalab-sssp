@@ -1,4 +1,7 @@
-aiidalab>=20.11.0b1
+aiida-core~=1.5
 aiida-pseudo~=0.4
-aiida-sssp-workflow~=0.1.0
 -e git+https://github.com/unkcpz/aiida-quantumespresso.git@8e310adb05ac4d9762ab944863d1b63a052026a4#egg=aiida_quantumespresso
+aiida-quantumespresso~=3.2
+aiida-sssp-workflow~=0.1.0
+aiidalab-widgets-base~=1.0b
+ipywidgets~=7.6
