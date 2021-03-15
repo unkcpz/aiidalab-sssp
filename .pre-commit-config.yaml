@@ -1,22 +1,23 @@
 # Install pre-commit hooks via:
 # pre-commit install
 
-# yapf = yet another python formatter
 repos:
-- repo: https://github.com/pre-commit/mirrors-yapf
-  rev: v0.30.0
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v3.4.0
   hooks:
-  - id: yapf
-    name: yapf
-    args: ["-i"]
+  - id: trailing-whitespace
+    exclude: README.md
+  - id: check-yaml
+  - id: check-json
 
--   repo: https://github.com/PyCQA/pylint
-    rev: pylint-2.6.0
-    hooks:
-    -   id: pylint
-        language: system
-        exclude: &exclude_files >
-          (?x)^(
-              start.py|
-              tests/.*(?<!\.py)$
-          )$
+- repo: https://github.com/ambv/black
+  rev: 20.8b1
+  hooks:
+  - id: black
+    name: Blacken
+
+- repo: https://gitlab.com/pycqa/flake8
+  rev: 3.9.0
+  hooks:
+  - id: flake8
+    args: [--count, --show-source, --statistics]
