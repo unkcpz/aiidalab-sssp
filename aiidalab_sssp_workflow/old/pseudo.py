@@ -10,6 +10,7 @@ class PseudoUploadWidget(ipw.VBox):
     """Class that allows to upload pseudopotential from user's computer."""
 
     pseudo_node = traitlets.Instance(UpfData, allow_none=True)
+    pseudo_filename = traitlets.Unicode(allow_none=True)
 
     def __init__(
         self, title: str = "", description: str = "Upload Pseudopotential"
